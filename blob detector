@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+PICTUR = cv2.imread("blobs.jpg",cv2.IMREAD_COLOR)
+
+TheParameters = cv2.SimpleBlobDetector_Params()
+
+TheParameters.filterByArea = True
+TheParameters.minArea = 100
+TheParameters.filterByCircularity = True
+TheParameters.minCircularity = 0.8
+TheParameters.filterByConvexity = True
+TheParameters.minConvexity = 0.7
+TheParameters.filterByInertia = True
+TheParameters.minInertiaRatio = 0.7
+Detector = cv2.SimpleBlobDetector_create(TheParameters)
+KEYPOINTS = Detector.detect(PICTUR)
+print(KEYPOINTS)
+PICTUR2 = cv2.drawKeypoints(PICTUR,KEYPOINTS,np.zeros((1,1)),(0,255,0),cv2.DrawMatchesFlags_DRAW_RICH_KEYPOINTS)
+
+cv2.imshow("pictur2.png",PICTUR2)
+cv2.waitKey(0)
