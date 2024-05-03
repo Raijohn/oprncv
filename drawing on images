@@ -1,0 +1,35 @@
+import cv2
+
+PIKACHU = cv2.imread("pikachu.png",cv2.IMREAD_COLOR)
+cv2.imshow("pikachu.png",PIKACHU)
+#cv2.waitKey(0)
+
+#draw a line
+LINE = cv2.line(PIKACHU,(50,50),(0,0),(255,0, 0),10)
+cv2.imshow("pikachuline.png",LINE)
+#cv2.waitKey(0)
+
+#draw a rectangle
+RECTANGLE = cv2.rectangle(PIKACHU,(50,50),(100,100),(0,0,0),10)
+cv2.imshow("rectangle.png",RECTANGLE)
+#cv2.waitKey(0)
+
+#draw a full rectangle
+FILLEDRECTANGLE = cv2.rectangle(PIKACHU,(100,100),(150,150),(0,0,0),-1)
+cv2.imshow("filledrectangle.png",FILLEDRECTANGLE)
+cv2.waitKey(0)
+
+#draw a circle 
+CIRCLE = cv2.circle(PIKACHU,(175,175),25,(0,0,255),10)
+cv2.imshow("circle.png",CIRCLE)
+#cv2.waitKey(0)
+
+#draw a filled circle
+FULLCIRCLE = cv2.circle(PIKACHU,(175,175),25,(0,0,255),-1)
+cv2.imshow("fullcircle.png",FULLCIRCLE)
+#cv2.waitKey(0)
+
+#add text
+TEXT = cv2.putText(PIKACHU,"Hello",(200,200),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,0),1)
+cv2.imshow("text.png",TEXT)
+cv2.waitKey(0)
