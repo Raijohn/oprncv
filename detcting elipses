@@ -1,0 +1,25 @@
+import cv2
+import numpy as np
+PICTUR = cv2.imread("blobs.jpg",cv2.IMREAD_COLOR)
+
+TheParameters = cv2.SimpleBlobDetector_Params()
+
+TheParameters.filterByArea = True
+TheParameters.minArea = 100
+TheParameters.filterByCircularity = True
+TheParameters.minCircularity = 0.2
+TheParameters.maxCircularity = 0.9
+TheParameters.filterByConvexity = True
+TheParameters.minConvexity = 0.3
+TheParameters.filterByInertia = True
+TheParameters.minInertiaRatio = 0.1
+TheParameters.maxInertiaRatio = 0.9
+Detector = cv2.SimpleBlobDetector_create(TheParameters)
+KEYPOINTS = Detector.detect(PICTUR)
+print(KEYPOINTS)
+PICTUR2 = cv2.drawKeypoints(PICTUR,KEYPOINTS,np.zeros((1,1)),(255,255,255),cv2.DrawMatchesFlags_DEFAULT)
+
+Text = cv2.putText(PICTUR2,"there are "+str(len(KEYPOINTS))+" elipses",(200,200),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),1)
+
+cv2.imshow("pictur2.png",PICTUR2)
+cv2.waitKey(0)
