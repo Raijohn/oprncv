@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+
+EYES = cv2.imread("eyes.jpg",cv2.IMREAD_COLOR)
+
+TurnEYESgray = cv2.cvtColor(EYES,cv2.COLOR_BGR2GRAY)
+
+BlurEYEYS = cv2.GaussianBlur(TurnEYESgray,(5,5),0)
+
+DetectedCircles =cv2.HoughCircles(BlurEYEYS,cv2.HOUGH_GRADIENT,1,10,param1=50,param2=25,minRadius=20,maxRadius=40)
+
+print(DetectedCircles)
