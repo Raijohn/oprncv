@@ -1,12 +1,21 @@
 import cv2
 import numpy as np
 
-EYES = cv2.imread("eyes.jpg",cv2.IMREAD_COLOR)
+EYES = cv2.imread("pac_man_ghost.png",cv2.IMREAD_COLOR)
 
 TurnEYESgray = cv2.cvtColor(EYES,cv2.COLOR_BGR2GRAY)
 
 BlurEYEYS = cv2.GaussianBlur(TurnEYESgray,(5,5),0)
 
-DetectedCircles =cv2.HoughCircles(BlurEYEYS,cv2.HOUGH_GRADIENT,1,10,param1=50,param2=25,minRadius=20,maxRadius=40)
+DetectedCircles =cv2.HoughCircles(BlurEYEYS,cv2.HOUGH_GRADIENT,1,15,param1=50,param2=25,minRadius=15,maxRadius=20)
+ 
 
 print(DetectedCircles)
+
+if DetectedCircles is not None:
+    DetectedCircles = np.uint(np.around(DetectedCircles))
+    for x,y,r in DetectedCircles[0]:
+        print(x,y,r)
+        cv2.circle(EYES,(x,y),r,(255,255,0),2)
+        cv2.imshow("eyese.jpg",EYES)
+        cv2.waitKey(0)
