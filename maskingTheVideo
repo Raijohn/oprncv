@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+
+video = cv2.VideoCapture("guy_with_a_red_blanket.mp4")
+
+for i in range(60):
+    success,background = video.read()
+    if not success:
+        continue
+
+while video.isOpened():
+    success,image = video.read()
+    if not success:
+        break
+    HSVimage = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
