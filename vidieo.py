@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 
 path = "C:\\Users\\kam\\OneDrive\\Desktop\\open cv\\vidio_images"
+os.chdir(path)
 print(path)
 number_of_images = len(os.listdir(path))
 totalW = 0
@@ -31,9 +32,10 @@ for file in os.listdir(path):
 
 #vidieo genaration
 image_colage = "image_colage.avi"
-the_video = cv2.VideoWriter(image_colage,0,1,(avaregeW,avaregeH),)
+the_video = cv2.VideoWriter(image_colage,0,0.5,(avaregeW,avaregeH),)
 for image in images:
     add = cv2.imread(os.path.join(path,image))
     the_video.write(add)
 
+    
     
