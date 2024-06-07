@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 
+lower_red = np.array([155,50,50])
+uper_red = np.array([180,255,255])
+
 video = cv2.VideoCapture("guy_with_a_red_blanket.mp4")
 
 for i in range(60):
@@ -13,3 +16,14 @@ while video.isOpened():
     if not success:
         break
     HSVimage = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
+    Mask1 = cv2.inRange(HSVimage,lower_red,uper_red)
+    Mask1 = cv2.morphologyEx(Mask1,cv2.MORPH_OPEN,np.ones((3,3)),iterations=2)
+    Mask2 = cv2.bitwise_not(Mask1)
+    result = cv2.bitwise_and(background,background,mask=Mask1)
+    result2  = cv2.bitwise_and(image,image,mask=Mask2)
+    finall_result = cv2.add(result,result2)
+    cv2.imshow("Video",finall_result)
+    Key = cv2.waitKey(10)
+    #27 = esc
+    if Key == 27:
+        break
